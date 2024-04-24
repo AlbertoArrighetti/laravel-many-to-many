@@ -55,9 +55,8 @@
 
         <div class="row">
             
-            
             {{-- type --}}
-            <div class="mb-3 col-6">
+            <div class="mb-3 col-3">
                 <div class="form-label">Select a Type for your project :</div>
                 <select class="form-select" name="type_id" id="type_id">
 
@@ -68,6 +67,34 @@
                     @endforeach
                 </select>
             </div>
+
+            {{-- technologies --}}
+            <div class="col-9 ">
+                <label for="" class="form-label">Select the technologies used for your project :</label>
+                <div class="d-flex gap-4">
+                    @foreach ($technologies as $technology)                 
+                    <div class="form-check">                    
+                        <input 
+                            class="form-check-input" 
+                            type="checkbox" 
+                            name="technologies[]"
+                            value="{{$technology->id}}"
+                            id="technology-{{$technology->id}}"
+
+                            @if ($errors->any())
+                            {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}
+                            @else
+                            {{ $project->technologies->contains($technology) ? 'checked' : '' }}
+                            @endif
+                        >
+                        <label for="technology-{{$technology->id}}" class="form-check-label" >
+                            {{$technology->name}}
+                        </label>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
         </div>
         
 

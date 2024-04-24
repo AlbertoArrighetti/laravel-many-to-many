@@ -50,6 +50,9 @@ class ProjectController extends Controller
         $newProject->fill($request->all());
         $newProject->save();
 
+        // technologies 
+        $newProject->technologies()->attach($request->technologies);
+
         // redirect to the list
         return redirect()->route('admin.projects.index');
     }
@@ -68,8 +71,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.edit', compact('project', 'types'));
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -87,8 +91,12 @@ class ProjectController extends Controller
         }
 
         //fillable
-        $project->update($request->all());
+        $project->update($request->all()); 
         $project->save();
+       
+        // technologies
+        $project->technologies()->sync($request->technologies);
+       
         return redirect()->route('admin.projects.show', $project->id);
     }
 

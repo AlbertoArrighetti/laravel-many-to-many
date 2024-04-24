@@ -65,15 +65,10 @@
 
             {{-- technologies --}}
             <div class="col-9 ">
-
                 <label for="" class="form-label">Select the technologies used for your project :</label>
-
                 <div class="d-flex gap-4">
-
-                    @foreach ($technologies as $technology)
-                    
-                    <div class="form-check">
-                        
+                    @foreach ($technologies as $technology)                 
+                    <div class="form-check">                    
                         <input 
                             class="form-check-input" 
                             type="checkbox" 
@@ -83,12 +78,10 @@
 
                             {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}
                         >
-                        
                         <label for="technology-{{$technology->id}}" class="form-check-label" >
                             {{$technology->name}}
                         </label>
                     </div>
-                    
                     @endforeach
                 </div>
             </div>

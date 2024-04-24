@@ -11,9 +11,16 @@
         <div class="text-center">
             <img src="{{asset('storage/' . $project->thumb)}}" class="card-img-top mb-4" style="width: 18rem;" alt="Project Thumb">
         </div>
-        <div class="text-center mb-5">
+        <div class="text-center mb-3">
             <h1>{{$project->title}}</h1>
-            <small>{{$project->type?->name}}</small>
+            <small>{{$project->type?->name}}</small>    
+        </div>
+        <div class="d-flex gap-3 mb-5">
+            @foreach ($project->technologies as $technology)
+            <span class="badge rounded-pill px-3 py-2 text-dark " style="background-color: {{$technology->color ?? 'rgba(255,255,255, 1)'}}">
+                {{$technology->name}}
+            </span>
+            @endforeach
         </div>
         
         <div>{{$project->description}}</div>

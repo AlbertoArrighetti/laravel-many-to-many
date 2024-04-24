@@ -49,13 +49,10 @@
                 @enderror
         </div>
 
-        <div class="row">
-
-           
-            
+        <div class="row mb-5 ">
             {{-- type --}}
-            <div class="mb-3 col-6">
-                <div class="form-label">Select a Type for your project :</div>
+            <div class="col-3">
+                <label for="type_id" class="form-label">Select a Type for your project :</label>
                 <select class="form-select" name="type_id" id="type_id">
                     
                     <option value=""></option>
@@ -64,6 +61,36 @@
                     <option value="{{$type->id}}" {{$type->id == old('type_id') ? 'selected' : '' }}>{{$type->name}}</option>                       
                     @endforeach
                 </select>
+            </div>
+
+            {{-- technologies --}}
+            <div class="col-9 ">
+
+                <label for="" class="form-label">Select the technologies used for your project :</label>
+
+                <div class="d-flex gap-4">
+
+                    @foreach ($technologies as $technology)
+                    
+                    <div class="form-check">
+                        
+                        <input 
+                            class="form-check-input" 
+                            type="checkbox" 
+                            name="technologies[]"
+                            value="{{$technology->id}}"
+                            id="technology-{{$technology->id}}"
+
+                            {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}
+                        >
+                        
+                        <label for="technology-{{$technology->id}}" class="form-check-label" >
+                            {{$technology->name}}
+                        </label>
+                    </div>
+                    
+                    @endforeach
+                </div>
             </div>
         </div>
         

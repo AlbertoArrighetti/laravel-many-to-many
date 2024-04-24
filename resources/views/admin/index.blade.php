@@ -11,10 +11,18 @@
             <a href="{{route('admin.projects.index')}}">here</a>
         </div>
 
-        <div>
-            Organize the Types of projects
-            <a href="{{route('admin.types.index')}}">here</a>
-        </div>
+        <div class="d-flex gap-4">
 
+            <div>
+                Organize the Types of projects
+                <a href="{{route('admin.types.index')}}">here</a>
+            </div>
+
+            <div>
+                Organize the Technologies of your projects
+                <a href="{{route('admin.technologies.index')}}">here</a>
+            </div>
+            
+        </div>
     </div>
 @endsection
